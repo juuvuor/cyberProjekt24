@@ -13,9 +13,8 @@ from .forms import RecipeForm
 
 
 
-#FIX 3: Security Logging and Monitoring Failures
-# The application does not log any user actions.
-# added clear logging to all the user actions in the application.
+#FLAW 3: Security Logging and Monitoring Failures
+
 # import logging
 
 # # Get an instance of a logger
@@ -24,7 +23,7 @@ from .forms import RecipeForm
 
 
 @login_required
-# FLAW 2: @csrf_exempt
+# FLAW 2: using @csrf_exempt 
 @csrf_exempt
 # FIX FLAW 2: remove the csrf_exempt decorator add @csfr_protect decorator
 def home(request):
@@ -65,7 +64,7 @@ def home(request):
 
 
 
-# FLAW 2: 
+# FLAW 2: using @csrf_exempt 
 @csrf_exempt
 # FIX flaw 2: remove the csrf_exempt decorator add @csfr_protect decorator
 
@@ -84,7 +83,7 @@ def delete(request, recipe_id):
 
 
 
-# FLAW 2: 
+# FLAW 2: using @csrf_exempt 
 @csrf_exempt
 # FIX FLAW 2: remove the csrf_exempt decorator add @csfr_protect decorator
 
