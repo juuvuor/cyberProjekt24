@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+        <head>
+            <title>Cookbook</title>
+            <style>
+                .logout-container {
+                    display: flex;
+                    justify-content: flex-end;
+                }
+            </style>
+             <script>
+                function confirmDelete(event) {
+                    if (!confirm("Are you sure you want to delete this recipe?")) {
+                        event.preventDefault();
+                    }
+                }
+            </script>
+        </head>
+        <body>
+            <h1>Welcome to your Cookbook!</h1>
+            <div class="logout-container">
+                <form action='logout/' method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Logout"/>
+                </form>
+            </div>
+
+            <form action="{% url 'home' %}" method="POST">
+                <!-- Flaw 2 
+                fixing flaw 2 {% csrf_token %} -->
+                <!-- {% csrf_token %} -->
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title"><br>
+                
+                <label for="content">Recipe:</label><br>
+                <textarea id="content" name="content" rows="4" cols="50"></textarea><br>
+                
+                <input type="submit" value="Add Recipe">
+            </form>
+
+            <h2>Your Recipe:</h2>
+            <ul>
+                {% for recipe in cookBook %}
+                    <!-- FLAW 4  -->
+                     <li>{{ recipe.1 | safe }} - {{ recipe.2 | safe}}</li>
+                    <!-- FIX FLAW 4: using escape  --> 
+                    <!-- <li>{{ recipe.1|escape }} - {{ recipe.2|escape }}</li> -->
+                        <form action="{% url 'edit' recipe.0 %}" method="GET" style="display:inline;">
+                            <button type="submit">Edit</button>
+                        </form>
+                        <form action="{% url 'delete' recipe.0 %}" method="POST" style="display:inline;" onsubmit="confirmDelete(event);">
+                            <!-- Flaw 2 fixing {% csrf_token %} -->
+                            <button type="submit">Delete</button>
+                        </form>
+                {% empty %}
+                    <li>No recipes yet.</li>
+                {% endfor %}
+            </ul>
+        </body>
+</html>

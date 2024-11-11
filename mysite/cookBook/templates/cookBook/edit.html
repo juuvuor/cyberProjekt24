@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+        <head>
+            <title>Edit Recipe</title>
+        </head>
+        <body>
+            <h1>Edit your recipe</h1>
+
+            <form method="post">
+                {{ form.as_p }}
+                <input type="submit" value="Save Changes">
+            </form>
+            <!-- FLAW 4  -->
+            <p>{{ recipe.content | safe }}</p>
+            <!-- FIX FLAW 4  -->
+             <!-- <p>{{ recipe.content | scape }}</p> -->
+        </body>
+</html>
