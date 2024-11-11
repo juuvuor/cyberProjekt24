@@ -4,7 +4,7 @@
 This Django-based web application, "CookBook," lets users create, edit, and delete recipes. However, it intentionally includes several cybersecurity vulnerabilities identified in the OWASP Top 10 2017 for educational purposes. Code comments offer potential fixes for these vulnerabilities. Please note that this application is not meant for production use and real-world applications.
 
 ### Prerequisites:
-- Python: Ensure you have Python 3.5 or later. Check your version by running ```python3 --version``` in your terminal. If needed, install a newer version from the `[official Python website](https://www.python.org/downloads/)`. 
+- Python: Ensure you have Python 3.5 or later. Check your version by running ```python3 --version``` in your terminal. If needed, install a newer version from the [official Python website](https://www.python.org/downloads/). 
 - Django: If you don't have Django, install it using ```pip install Django```.
 
 ### Installation:
